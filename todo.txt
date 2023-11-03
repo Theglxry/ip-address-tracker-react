@@ -1,0 +1,85 @@
+- get the required google font.
+- get api key for ip
+- get mapping api (https://leafletjs.com/)
+- use seperate axios file
+- use seperate seperate
+- use context api to pass props through elements
+- add gap-5 to the jumbotron
+- use .env for the ip address
+- try out ipgeolocation.io API ...they have complete details
+- prevent the page from reloading when a search is entered.
+- configure the input to take only ip numbers or domain
+
+
+
+
+STEPS :
+- set up needed files
+- start with jumbotron and pass in the searchfield
+- the map for bottom half of the page
+- the ip result should be absolute 
+- frontend mentor and use info . 
+
+
+
+
+
+ 
+
+
+ 
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import './styles.css';
+
+class App extends Component {
+  state = {
+    center: [51.505, -0.091],
+    zoom: 13,
+  };
+
+  render() {
+    return (
+      <div>
+        <Map center={this.state.center} zoom={this.state.zoom}>
+          <TileLayer
+            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={this.state.center}>
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+        </Map>
+      </div>
+    );
+  }
+}
+
+
+const map = () =>{
+let state = {
+    center: [51.505, -0.091],
+    zoom: 13,
+  };
+
+   return (
+      <div>
+        <Map center={this.state.center} zoom={this.state.zoom}>
+          <TileLayer
+            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={this.state.center}>
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+        </Map>
+      </div>
+    );
+}
+
+
