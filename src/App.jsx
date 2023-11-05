@@ -1,11 +1,12 @@
+// App.js
 import Jumbotron from "./Components/Jumbotron";
 import SearchField from "./Components/SearchField";
 import Stats from "./Components/stats";
-import Map from "./Components/Map";
+import MapComponent from "./Components/Map";
 import Footer from "./Components/Footer";
 import { useState, useEffect } from "react";
-
 import axios from "axios";
+
 const apiKey = import.meta.env.VITE_REACT_APP_API_KEY;
 
 function App() {
@@ -13,31 +14,28 @@ function App() {
   const [location, setLocation] = useState("");
   const [timeZone, setTimeZone] = useState("");
   const [isp, setIsp] = useState("");
-  const [coordinates, setCoordinate] = useState({});
+  const [coordinates, setCoordinates] = useState({ latitude: 0, longitude: 0 });
 
   const getLocation = async (address = "") => {
     const axiosConfig = {
-      timeout: 5000, // Set a timeout when result is taking too long to complete
+      timeout: 5000,
     };
 
-    // const apiUrl = `https://geo.ipify.org/api/v2/country?apiKey=${apiKey}&ipAddress=${address}`;
     const apiUrl = `https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=${address}`;
     const res = await axios.get(apiUrl, axiosConfig);
     const data = res.data;
 
+    const { latitude, longitude } = data;
+
     try {
       console.log(res.data);
-
       setIpAddress(data.ip);
-    // setLocation( `${data.location.region}, ${data.location.country}, ${data.location.postalcode}`);
       setLocation(`${data.city}, ${data.country_name}, ${data.zipcode}`);
       setTimeZone(`UTC ${data.time_zone.offset}`);
       setIsp(`${data.isp}`);
-
-      // for the map
-      setCoordinate({
-        lat: data.latitude,
-        lng: data.longitude,
+      setCoordinates({
+        latitude,
+        longitude,
       });
     } catch (error) {
       if (axios.isCancel(error)) {
@@ -64,10 +62,11 @@ function App() {
         timeZone={timeZone}
         isp={isp}
       />
-      <Map coordinates={coordinates} />
+      <MapComponent coordinates={coordinates} location={location} />
       <Footer />
     </div>
   );
 }
 
 export default App;
+

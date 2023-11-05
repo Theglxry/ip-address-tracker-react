@@ -1,52 +1,45 @@
-// import { MapContainer, TileLayer, Marker } from "react-leaflet";
-// import MarkerClusterGroup from "react-leaflet-markercluster";
-
-
- 
-// tutorial way first
-// import "leaflet/dist/leaflet.css";
-// import L, { marker } from "leaflet";
-
-// import landMarker from "../assets/images/icon-location.svg";
-// import { MapContainer, TileLayer } from "react-leaflet";
-
-// const Map = ({ coordinates }) => {
-//   const marker = new L.icon({ iconUrl: landMarker });
-//   let state = {
-//     keyMap: Math.random(),
-//   };
-
-//   return (
-//     <MapContainer
-//       key={state.keyMap}
-//       center={[coordinates.latitude, coordinates.longitude]}
-//       zoom={18}
-//       className="w-full h-3/5 z-0"
-//     >
-//       <TileLayer
-//         attribution="Google Maps"
-//         url="https//google.cn/map/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}"
-//       >
-//         <marker
-//           position={[coordinates.lat, coordinates.lng]}
-//           icon={marker}
-//         ></marker>
-//       </TileLayer>
-//     </MapContainer>
-//   );
-// };
-
-// export default Map;
-
-
- 
-// import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 
-const Map = ({ coordinates }) => {
+
+function MapComponent({ coordinates, location }) {
+  console.log("Coordinates prop in MapComponent: ", coordinates);
+
+  const latitude = parseFloat(coordinates.latitude); // Convert latitude to a number
+  const longitude = parseFloat(coordinates.longitude); // Convert longitude to a number
+
+
+  const markerIcon = L.icon({
+    iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+    shadowSize: [41, 41],
+  });
+  
+
   return (
- <div>you</div>
-  );
-};
+    <MapContainer
+      center={[latitude, longitude]}
+      zoom={18}
+      scrollWheelZoom={true}
+      style={{ height: "400px", width: "100%" }}
+    >
+      <TileLayer
+        attribution="Maps"
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
 
-export default Map;
+      <Marker position={[latitude, longitude]} 
+      icon={markerIcon}
+      >
+        <Popup>{location}</Popup>
+      </Marker>
+    </MapContainer>
+  );
+}
+
+export default MapComponent;
+
