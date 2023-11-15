@@ -13,7 +13,8 @@ dist-ssr
 *.local
 
 # Environment variables
-*.env
+
+
 
 # Text files
 *.txt
