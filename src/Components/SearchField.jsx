@@ -13,24 +13,25 @@ function SearchField({setIpAddress, getLocation}) {
 
   // handle search input when there's a change
   const handleInputChange = (e) => {
+    e.preventDefault()
     setIpAddressValue(e.target.value);
   }
 
   
   const handButtonClick = (e) => {
-    e.preventdefalut()
+    e.preventDefault()
         setIpAddress(ipAddressValue)
         getLocation(ipAddressValue)
   }
 
  
   // handle search input
-//   const handleEnterSearch = (e) => {
-//     setIpAddress(ipAddressValue)
-//  if(e.key === 'Enter'){
-//   getLocation(ipAddressValue)
-//  }
-//   }
+  const handleEnterSearch = (e) => {
+    setIpAddress(ipAddressValue)
+ if(e.key === 'Enter'){
+  getLocation(ipAddressValue)
+ }
+  }
 
 
   return (
@@ -43,8 +44,9 @@ function SearchField({setIpAddress, getLocation}) {
               className="w-full rounded-md rounded-r-none p-6"
               placeholder="Search for any IP address or domain"
               onChange={handleInputChange}
-              // onKeyDown={handleEnterSearch}
+              onKeyDown={handleEnterSearch}
             />
+            
             <button
               className="bg-black text-white px-6 text-lg font-semibold py-4 rounded-r-md"
               onClick={handButtonClick}

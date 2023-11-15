@@ -3,7 +3,6 @@ import Jumbotron from "./Components/Jumbotron";
 import SearchField from "./Components/SearchField";
 import Stats from "./Components/stats";
 import MapComponent from "./Components/Map";
-import Footer from "./Components/Footer";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -14,7 +13,10 @@ function App() {
   const [location, setLocation] = useState("");
   const [timeZone, setTimeZone] = useState("");
   const [isp, setIsp] = useState("");
-  const [coordinates, setCoordinates] = useState({ latitude: 0, longitude: 0 });
+  const [coordinates, setCoordinates] = useState({
+    latitude: 6.4547,
+    longitude: 3.38876,
+  });
 
   const getLocation = async (address = "") => {
     const axiosConfig = {
@@ -25,7 +27,12 @@ function App() {
     const res = await axios.get(apiUrl, axiosConfig);
     const data = res.data;
 
-    const { latitude, longitude } = data;
+    // const { latitude, longitude } = data;
+    const latitude = parseFloat(data.latitude)
+    const longitude = parseFloat(data.longitude)
+
+
+console.log(latitude, longitude);
 
     try {
       console.log(res.data);
@@ -33,15 +40,18 @@ function App() {
       setLocation(`${data.city}, ${data.country_name}, ${data.zipcode}`);
       setTimeZone(`UTC ${data.time_zone.offset}`);
       setIsp(`${data.isp}`);
+
       setCoordinates({
         latitude,
         longitude,
       });
+
+
     } catch (error) {
       if (axios.isCancel(error)) {
         // Request was canceled, handle as needed
       } else {
-        // Handle other errors, e.g., display an error message
+        // Handle other errors,
         console.error("An error occurred:", error);
       }
     }
@@ -62,11 +72,10 @@ function App() {
         timeZone={timeZone}
         isp={isp}
       />
+
       <MapComponent coordinates={coordinates} location={location} />
-      <Footer />
     </div>
   );
 }
 
 export default App;
-
