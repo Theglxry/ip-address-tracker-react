@@ -26,7 +26,7 @@ function MapComponent({ coordinates, location }) {
       zoom={18}
       scrollWheelZoom={true}
       style={{ height: "65vh", width: "100%" }}
-      className="z-10"
+      className="animate z-10"
     >
       <TileLayer
         attribution="Maps"

@@ -57,7 +57,10 @@ function App() {
   };
 
   useEffect(() => {
-    getLocation();
+    if(!ipAddress){
+      getLocation();
+
+    }
   }, [ipAddress]);
 
 
