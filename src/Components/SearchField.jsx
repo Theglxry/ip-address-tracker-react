@@ -11,13 +11,13 @@ function SearchField({setIpAddress, getLocation}) {
   const [ipAddressValue, setIpAddressValue] = useState("");
 
 
-  // handle search input when there's a change
+  // search value
   const handleInputChange = (e) => {
     e.preventDefault()
     setIpAddressValue(e.target.value);
   }
 
-  
+  // search button
   const handButtonClick = (e) => {
     e.preventDefault()
         setIpAddress(ipAddressValue)
@@ -25,7 +25,7 @@ function SearchField({setIpAddress, getLocation}) {
   }
 
  
-  // handle search input
+  // enter key
   const handleEnterSearch = (e) => {
     setIpAddress(ipAddressValue)
  if(e.key === 'Enter'){
