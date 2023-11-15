@@ -1,15 +1,15 @@
-
-
+import mobileBg from '../assets/images/pattern-bg-mobile.png';
+import desktopBg from '../assets/images/pattern-bg-desktop.png';
 
 
 
 const styles = {
-  backgroundImage: "url(src/assets/images/pattern-bg-mobile.png)",
+  backgroundImage:`url(${mobileBg})`,
   height: "20rem",
 };
 
 if (window.innerWidth >= 768) {
-  styles.backgroundImage = "url(src/assets/images/pattern-bg-desktop.png) ";
+  styles.backgroundImage = `url(${desktopBg})`;
 }
 
 function Jumbotron({ children }) {
