@@ -11,17 +11,9 @@
 }
 
 body {
-  font-family: "Manrope", sans-serif;
   font-family: "Rubik", sans-serif;
 }
 
 
-.leaflet-container {
-  height: 600px;
-  width: 100%;
-}
 
-.leaflet-div-icon {
-  background: transparent;
-  border: none;
-}
+

@@ -18,7 +18,9 @@ function App() {
     longitude: 3.38876,
   });
 
+
   const getLocation = async (address = "") => {
+
     const axiosConfig = {
       timeout: 5000,
     };
@@ -28,11 +30,10 @@ function App() {
     const data = res.data;
 
     // const { latitude, longitude } = data;
-    const latitude = parseFloat(data.latitude)
-    const longitude = parseFloat(data.longitude)
+    const latitude = parseFloat(data.latitude);
+    const longitude = parseFloat(data.longitude);
 
-
-console.log(latitude, longitude);
+    console.log(latitude, longitude);
 
     try {
       console.log(res.data);
@@ -45,8 +46,6 @@ console.log(latitude, longitude);
         latitude,
         longitude,
       });
-
-
     } catch (error) {
       if (axios.isCancel(error)) {
         // Request was canceled, handle as needed
@@ -54,12 +53,14 @@ console.log(latitude, longitude);
         // Handle other errors,
         console.error("An error occurred:", error);
       }
-    }
+    }  
   };
 
   useEffect(() => {
     getLocation();
-  }, []);
+  }, [ipAddress]);
+
+
 
   return (
     <div className="flex flex-col h-screen relative">
