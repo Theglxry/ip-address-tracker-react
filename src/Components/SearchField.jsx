@@ -32,7 +32,7 @@ function SearchField({ setIpAddress, getLocation }) {
           <div className="flex rounded-2xl overflow-hidden w-full">
             <input
               type="text"
-              className="w-full rounded-md rounded-r-none p-6"
+              className="w-full rounded-md rounded-r-none p-6 cursor-pointer"
               placeholder="Search for any IP address or domain"
               value={ipAddressValue}
               onChange={(e) => {
