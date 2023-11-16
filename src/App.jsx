@@ -58,6 +58,9 @@ function App() {
     }
   }, [ipAddress]);
 
+
+  
+
   return (
     <div className="flex flex-col h-screen relative">
       <Jumbotron>

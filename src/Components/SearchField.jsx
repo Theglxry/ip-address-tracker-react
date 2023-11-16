@@ -1,50 +1,29 @@
-// import React from 'react'
 import { useState } from "react";
 import arrowIcon from "../assets/images/icon-arrow.svg";
-import debounce from "lodash.debounce";
 
 function SearchField({ setIpAddress, getLocation }) {
   const [ipAddressValue, setIpAddressValue] = useState("");
 
   const ipv4Pattern =
-    /^(?!.*\.\.)(?!.*\.$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+    /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
 
-  // Debounce the getLocation function
-  const delayedGetLocation = debounce((ip) => {
-    if (ipv4Pattern(ip)) {
-      setIpAddress(ip);
-      getLocation(ip);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (ipv4Pattern.test(ipAddressValue)) {
+      setIpAddress(ipAddressValue);
+      getLocation(ipAddressValue);
+      console.log("valid IP");
     } else {
-      console.log("Invalid IP address. Please enter a valid IPv4 address.");
+      alert("Please enter a valid IP address");
     }
-  }, 500); 
-
-  
-  // search value
-  const handleInputChange = (e) => {
-    setIpAddressValue(e.target.value);
   };
 
-
-  // search button
-  const handButtonClick = () => {
-    delayedGetLocation(ipAddressValue);
+  const handleEnterSearch = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleEnterSearch();
+    }
   };
-
-
-  // enter key
-  const handleEnterSearch = () => {
-    delayedGetLocation(ipAddressValue);
-  };
-
-
-
-
-
-
-
-
-
 
   return (
     <form>
@@ -55,13 +34,16 @@ function SearchField({ setIpAddress, getLocation }) {
               type="text"
               className="w-full rounded-md rounded-r-none p-6"
               placeholder="Search for any IP address or domain"
-              onChange={handleInputChange}
+              value={ipAddressValue}
+              onChange={(e) => {
+                setIpAddressValue(e.target.value);
+              }}
               onKeyDown={handleEnterSearch}
             />
 
             <button
               className="bg-black text-white px-6 text-lg font-semibold py-4 rounded-r-md"
-              onClick={handButtonClick}
+              onClick={handleSearch}
             >
               <img src={arrowIcon} />
             </button>
