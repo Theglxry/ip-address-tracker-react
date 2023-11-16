@@ -33,7 +33,6 @@ function App() {
     const latitude = parseFloat(data.latitude);
     const longitude = parseFloat(data.longitude);
 
-    console.log(latitude, longitude);
 
     try {
       console.log(res.data);

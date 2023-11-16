@@ -3,7 +3,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
 function MapComponent({ coordinates, location }) {
-  console.log("Coordinates prop in MapComponent: ", coordinates);
+  // console.log("Coordinates prop in MapComponent: ", coordinates);
 
   const latitude = parseFloat(coordinates.latitude);
   const longitude = parseFloat(coordinates.longitude);

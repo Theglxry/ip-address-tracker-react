@@ -15,7 +15,7 @@ if (window.innerWidth >= 768) {
 function Jumbotron({ children }) {
   return (
     <div
-      className="flex items-center py-9 px-4 bg-cover bg-center bg-no-repeat text-center"
+      className="flex items-center  sm:py-9 px-4 bg-cover bg-center bg-no-repeat text-center"
       style={styles}
     >
       <div className="max-w-xl mx-auto w-full">

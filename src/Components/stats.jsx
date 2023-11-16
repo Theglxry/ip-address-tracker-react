@@ -5,27 +5,29 @@ function Stats({ ipAddress, location, timeZone, isp }) {
   }
 
   return (
-    <div
-      className="shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] top-[16rem] md:mt-4 w-4/5 rounded-lg absolute  md:top-60 left-[5rem] md:left-40 bg-white z-50 flex flex-col sm:flex-row container gap-4 md:gap-10 p-4 md:p-8 "
-    >
-      <div className="md:border-r-2 w-full border-slate-300 flex flex-col gap-2  items-center">
-        <p className="text-sm text-slate-400 font-semibold">IP ADDRESS</p>
-        <p className="md:text-2xl text-black font-bold">{ipAddress}</p>
-      </div>
+    <div className="stats-container md:w-[80%] w-[80%] absolute sm:top-[25%] top-[26%] left-[10%] z-50 ">
+      <div className="rounded-lg flex md:flex-row flex-col md:gap-5 gap-3 bg-white md:p-10 p-5 shadow-xl">
 
-      <div className="md:border-r-2 w-full border-slate-300 flex flex-col gap-2  items-center">
-        <p className="text-sm text-slate-400 font-semibold">LOCATION</p>
-        <p className="md:text-2xl text-black font-bold">{location}</p>
-      </div>
 
-      <div className="md:border-r-2 w-full border-slate-300 flex flex-col gap-2  items-center">
-        <p className="text-sm text-slate-400 font-semibold">TIMEZONE</p>
-        <p className="md:text-2xl text-black font-bold">{timeZone}</p>
-      </div>
+        <div className="md:border-r-2 w-full border-slate-300 flex flex-col gap-2  items-center">
+          <p className="text-sm text-slate-400 font-semibold">IP ADDRESS</p>
+          <p className="md:text-2xl text-black font-bold">{ipAddress}</p>
+        </div>
 
-      <div className="w-full flex flex-col gap-2 items-center">
-        <p className="text-sm text-slate-400 font-semibold">ISP</p>
-        <p className="md:text-2xl text-black font-bold">{isp}</p>
+        <div className="md:border-r-2 w-full border-slate-300 flex flex-col gap-2  items-center">
+          <p className="text-sm text-slate-400 font-semibold">LOCATION</p>
+          <p className="md:text-2xl text-black font-bold">{location}</p>
+        </div>
+
+        <div className="md:border-r-2 w-full border-slate-300 flex flex-col gap-2  items-center">
+          <p className="text-sm text-slate-400 font-semibold">TIMEZONE</p>
+          <p className="md:text-2xl text-black font-bold">{timeZone}</p>
+        </div>
+
+        <div className="w-full flex flex-col gap-2 items-center">
+          <p className="text-sm text-slate-400 font-semibold">ISP</p>
+          <p className="md:text-2xl text-black font-bold">{isp}</p>
+        </div>
       </div>
     </div>
   );
