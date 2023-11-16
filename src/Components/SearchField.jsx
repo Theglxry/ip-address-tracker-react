@@ -1,37 +1,49 @@
 // import React from 'react'
 import { useState } from "react";
 import arrowIcon from "../assets/images/icon-arrow.svg";
+import debounce from "lodash.debounce";
 
-
-
-
-
-
-function SearchField({setIpAddress, getLocation}) {
+function SearchField({ setIpAddress, getLocation }) {
   const [ipAddressValue, setIpAddressValue] = useState("");
 
+  const ipv4Pattern =
+    /^(?!.*\.\.)(?!.*\.$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
 
+  // Debounce the getLocation function
+  const delayedGetLocation = debounce((ip) => {
+    if (ipv4Pattern(ip)) {
+      setIpAddress(ip);
+      getLocation(ip);
+    } else {
+      console.log("Invalid IP address. Please enter a valid IPv4 address.");
+    }
+  }, 500); 
+
+  
   // search value
   const handleInputChange = (e) => {
-    e.preventDefault()
     setIpAddressValue(e.target.value);
-  }
+  };
+
 
   // search button
-  const handButtonClick = (e) => {
-    e.preventDefault()
-        setIpAddress(ipAddressValue)
-        getLocation(ipAddressValue)
-  }
+  const handButtonClick = () => {
+    delayedGetLocation(ipAddressValue);
+  };
 
- 
+
   // enter key
-  const handleEnterSearch = (e) => {
-    setIpAddress(ipAddressValue)
- if(e.key === 'Enter'){
-  getLocation(ipAddressValue)
- }
-  }
+  const handleEnterSearch = () => {
+    delayedGetLocation(ipAddressValue);
+  };
+
+
+
+
+
+
+
+
 
 
   return (
@@ -46,7 +58,7 @@ function SearchField({setIpAddress, getLocation}) {
               onChange={handleInputChange}
               onKeyDown={handleEnterSearch}
             />
-            
+
             <button
               className="bg-black text-white px-6 text-lg font-semibold py-4 rounded-r-md"
               onClick={handButtonClick}
