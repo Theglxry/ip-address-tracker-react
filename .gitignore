@@ -12,8 +12,8 @@ dist
 dist-ssr
 *.local
 
-# Environment variables
-*.env 
+# Ignore .env file
+.env
 
 # Text files
 *.txt
