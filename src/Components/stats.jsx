@@ -14,7 +14,7 @@ function Stats({ ipAddress, location, timeZone, isp }) {
           <p className="md:text-2xl text-black font-bold">{ipAddress}</p>
         </div>
 
-        <div className="md:border-r-2 w-full border-slate-300 flex flex-col gap-2  items-center">
+        <div className="md:border-r-2 w-full border-slate-300 flex flex-col gap-2 text-center  items-center">
           <p className="text-sm text-slate-400 font-semibold">LOCATION</p>
           <p className="md:text-2xl text-black font-bold">{location}</p>
         </div>
